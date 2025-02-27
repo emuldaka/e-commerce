@@ -3,6 +3,7 @@ import Navigation from "./Navigation/Nav";
 import Products from "./Products/Products";
 import Recommended from "./Recommended/Recommended";
 import Sidebar from "./Siderbar/Sidebar";
+import "./index.css";
 
 //Datebase
 import products from "./db/data";
@@ -17,8 +18,10 @@ function App() {
     setQuery(event.target.value);
   };
 
-  const filteredItems = products.filter((product) =>
-    product.title.toLocaleUpperCase().indexOf(query.toLocaleUpperCase() !== -1)
+  const filteredItems = products.filter(
+    (product) =>
+      product.title.toLocaleUpperCase().indexOf(query.toLocaleUpperCase()) !==
+      -1
   );
 
   //Radio Filter
@@ -67,14 +70,14 @@ function App() {
     );
   }
 
-  filteredData(products, selectedCategory);
+  const result = filteredData(products, selectedCategory, query);
 
   return (
     <>
-      <Sidebar />
-      <Navigation />
-      <Recommended />
-      <Products />
+      <Sidebar handleChange={handleChange} />
+      <Navigation query={query} handleInputChange={handleInputChange} />
+      <Recommended handleClick={handleClick} />
+      <Products result={result} />
     </>
   );
 }
