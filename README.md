@@ -26,5 +26,5 @@ User Interface 🎨
 
 - ⚛️ React
 - 📜 JavaScript
-- 🎨 CSS (or Tailwind CSS)
-- 🌐 Hosted locally (or specify hosting, e.g., Netlify)
+- 🎨 CSS
+- 🌐 Hosted on https://emuldaka.github.io/e-commerce/

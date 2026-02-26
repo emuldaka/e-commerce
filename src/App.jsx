@@ -16,6 +16,8 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isWishlistFilterActive, setIsWishlistFilterActive] = useState(false);
+  const [previousCategory, setPreviousCategory] = useState(null);
 
   //Input Filter
   const handleInputChange = (event) => {
@@ -31,6 +33,21 @@ function App() {
   //Radio Filter
   const handleChange = (event) => {
     setSelectedCategory(event.target.value);
+    setIsWishlistFilterActive(false);
+  };
+
+  //Toggle Wishlist Filter
+  const handleWishlistFilterToggle = () => {
+    if (!isWishlistFilterActive) {
+      //Turning on wishlist filter - save current category
+      setPreviousCategory(selectedCategory);
+      setSelectedCategory("wishlist");
+      setIsWishlistFilterActive(true);
+    } else {
+      //Turning off wishlist filter - restore previous category
+      setSelectedCategory(previousCategory);
+      setIsWishlistFilterActive(false);
+    }
   };
 
   //Buttons Filter
@@ -131,6 +148,8 @@ function App() {
         isCartOpen={isCartOpen}
         setIsCartOpen={setIsCartOpen}
         onRemoveFromCart={handleRemoveFromCart}
+        onWishlistFilterToggle={handleWishlistFilterToggle}
+        isWishlistFilterActive={isWishlistFilterActive}
       />
       {isCartOpen && (
         <CartModal

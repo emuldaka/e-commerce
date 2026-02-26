@@ -9,6 +9,8 @@ function Nav({
   wishlistCount = 0,
   isCartOpen = false,
   setIsCartOpen = () => {},
+  onWishlistFilterToggle = () => {},
+  isWishlistFilterActive = false,
 }) {
   const handleCartClick = (e) => {
     e.preventDefault();
@@ -17,7 +19,7 @@ function Nav({
 
   const handleWishlistClick = (e) => {
     e.preventDefault();
-    alert(`Wishlist has ${wishlistCount} item(s)`);
+    onWishlistFilterToggle();
   };
 
   const handleProfileClick = (e) => {
@@ -39,11 +41,14 @@ function Nav({
 
         <div className="profile-container">
           <button
-            className="nav-button"
+            className={`nav-button ${isWishlistFilterActive ? "active" : ""}`}
             onClick={handleWishlistClick}
-            title="Wishlist"
+            title="Filter by Wishlist"
           >
-            <FiHeart className="nav-icons" />
+            <FiHeart
+              className="nav-icons"
+              style={{ fill: isWishlistFilterActive ? "red" : "none" }}
+            />
             {wishlistCount > 0 && (
               <span className="badge">{wishlistCount}</span>
             )}
