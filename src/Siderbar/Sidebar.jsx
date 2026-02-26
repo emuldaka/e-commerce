@@ -2,6 +2,7 @@ import React from "react";
 import Category from "./Category/Category";
 import Price from "./Price/Price";
 import Colors from "./Colors/Colors";
+import Wishlist from "./Wishlist/Wishlist";
 import "./Sidebar.css";
 
 function Sidebar({ handleChange }) {
@@ -12,6 +13,7 @@ function Sidebar({ handleChange }) {
           <h1>🛒</h1>
         </div>
         <Category handleChange={handleChange} />
+        <Wishlist handleChange={handleChange} />
         <Price handleChange={handleChange} />
         <Colors handleChange={handleChange} />
       </sec>

@@ -3,7 +3,28 @@ import { FiHeart } from "react-icons/fi";
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from "react-icons/ai";
 import "./Nav.css";
 
-function Nav({ handleInputChange }) {
+function Nav({
+  handleInputChange,
+  cartCount = 0,
+  wishlistCount = 0,
+  isCartOpen = false,
+  setIsCartOpen = () => {},
+}) {
+  const handleCartClick = (e) => {
+    e.preventDefault();
+    setIsCartOpen(!isCartOpen);
+  };
+
+  const handleWishlistClick = (e) => {
+    e.preventDefault();
+    alert(`Wishlist has ${wishlistCount} item(s)`);
+  };
+
+  const handleProfileClick = (e) => {
+    e.preventDefault();
+    alert("Profile functionality coming soon!");
+  };
+
   return (
     <>
       <nav>
@@ -17,15 +38,31 @@ function Nav({ handleInputChange }) {
         </div>
 
         <div className="profile-container">
-          <a href="#">
+          <button
+            className="nav-button"
+            onClick={handleWishlistClick}
+            title="Wishlist"
+          >
             <FiHeart className="nav-icons" />
-          </a>
-          <a href="#">
+            {wishlistCount > 0 && (
+              <span className="badge">{wishlistCount}</span>
+            )}
+          </button>
+          <button
+            className="nav-button"
+            onClick={handleCartClick}
+            title="Shopping Cart"
+          >
             <AiOutlineShoppingCart className="nav-icons" />
-          </a>
-          <a href="#">
+            {cartCount > 0 && <span className="badge">{cartCount}</span>}
+          </button>
+          <button
+            className="nav-button"
+            onClick={handleProfileClick}
+            title="Profile"
+          >
             <AiOutlineUserAdd className="nav-icons" />
-          </a>
+          </button>
         </div>
       </nav>
     </>
